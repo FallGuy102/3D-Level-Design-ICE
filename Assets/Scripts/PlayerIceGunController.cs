@@ -24,6 +24,8 @@ public class PlayerIceGunController : MonoBehaviour
 
     [Header("Fire")]
     [SerializeField] private bool requireAimToFire = true;
+    [SerializeField] private bool hasLevelTwoIceShot;
+    [SerializeField] private float shotRange = 35f;
     [SerializeField] private float fireCooldown = 0.18f;
     [SerializeField] private Color impactColor = new Color(0.45f, 0.9f, 1f, 1f);
     [SerializeField] private float impactVfxLifetime = 1.2f;
@@ -131,10 +133,51 @@ public class PlayerIceGunController : MonoBehaviour
 
         nextFireTime = Time.time + fireCooldown;
 
-        if (TryGetAimHit(out RaycastHit hit))
+        if (TryGetShotHit(out RaycastHit hit))
+        {
             SpawnImpactVfx(hit.point, hit.normal);
+            TryFreezeEnemy(hit);
+            TryFreezeWater(hit);
+        }
         else
-            Debug.DrawRay(currentAimRay.origin, currentAimRay.direction * aimRange, impactColor, 0.2f);
+        {
+            Debug.DrawRay(currentAimRay.origin, currentAimRay.direction * shotRange, impactColor, 0.2f);
+        }
+    }
+
+    private bool TryGetShotHit(out RaycastHit hit)
+    {
+        return Physics.Raycast(currentAimRay, out hit, shotRange, aimMask, QueryTriggerInteraction.Collide);
+    }
+
+    private void TryFreezeWater(RaycastHit hit)
+    {
+        WaterFreezeTest waterFreeze = hit.collider.GetComponentInParent<WaterFreezeTest>();
+        if (waterFreeze == null)
+            return;
+
+        if (waterFreeze.IsFrozen)
+            return;
+
+        if (hasLevelTwoIceShot)
+            waterFreeze.SetFrozenLevelTwo(true, hit.point);
+        else
+            waterFreeze.SetFrozen(true, hit.point);
+    }
+
+    private void TryFreezeEnemy(RaycastHit hit)
+    {
+        EnemyFreezeController enemyFreeze = hit.collider.GetComponentInParent<EnemyFreezeController>();
+        if (enemyFreeze == null)
+            return;
+
+        if (enemyFreeze.IsFrozen)
+        {
+            enemyFreeze.PushWhileFrozen(currentAimRay.direction);
+            return;
+        }
+
+        enemyFreeze.Freeze(hit.point, currentAimRay.direction, hasLevelTwoIceShot);
     }
 
     private void SpawnImpactVfx(Vector3 position, Vector3 normal)

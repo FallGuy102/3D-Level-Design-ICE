@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1507636620937791838}
   - component: {fileID: 1507636620937791839}
   - component: {fileID: 5202369102847446011}
+  - component: {fileID: 8275813115301566990}
   m_Layer: 0
   m_Name: WaterBlock_50m
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507636620937791836}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10, y: -0.75, z: 35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 141d9d6ca43b6c843965491604c6deff, type: 2}
+  - {fileID: 2100000, guid: 8759ec410a6774b4ea13ae32dc2b8d2e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,6 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iceMaterial: {fileID: 2100000, guid: 6e980b0b0d2d45a4abdcf925d6e69b45, type: 2}
+  levelTwoIceMaterial: {fileID: 2100000, guid: 1f3b0b802c4a4a2e928ea91e5ccdbb73, type: 2}
+  levelTwoReflectionMaterial: {fileID: 2100000, guid: 4c825d5869c341d7859315ae3c902d9a, type: 2}
   startFrozen: 0
   legacyToggleKey: 102
   frozenHeightOffset: 0.08
@@ -105,4 +108,27 @@ MonoBehaviour:
   createThicknessVisual: 1
   freezeSpreadSpeed: 18
   maxFreezeRadius: 80
+  levelTwoHeightOffset: 0.14
+  levelTwoReflectionHeightOffset: 0.02
   raycastDistance: 120
+--- !u!65 &8275813115301566990
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507636620937791836}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 50.000004, y: 0.5, z: 50}
+  m_Center: {x: 0, y: -0.25, z: 0}

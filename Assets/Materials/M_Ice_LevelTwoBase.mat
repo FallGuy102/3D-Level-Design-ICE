@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Ice_LevelTwoBase
+  m_Shader: {fileID: 4800000, guid: 71b5e8e5302f4e8d9bfef95ad9aa750f, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _CrackAmount: 0.72
+    - _FrostAmount: 0.32
+    - _FreezeFeather: 1.5
+    - _FreezeRadius: 9999
+    - _NoiseScale: 42
+    - _ReflectionStrength: 0.42
+    - _Roughness: 0.22
+    - _Transparency: 0.52
+    m_Colors:
+    - _BaseColor: {r: 0.08, g: 0.28, b: 0.58, a: 0.55}
+    - _CrackColor: {r: 0.78, g: 0.96, b: 1, a: 1}
+    - _DeepColor: {r: 0.01, g: 0.07, b: 0.2, a: 0.72}
+    - _FrostColor: {r: 0.68, g: 0.9, b: 1, a: 0.8}
+    - _FreezeCenter: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
