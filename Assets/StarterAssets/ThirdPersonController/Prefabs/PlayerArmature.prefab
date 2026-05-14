@@ -1005,6 +1005,8 @@ GameObject:
   - component: {fileID: 5885216827943657505}
   - component: {fileID: 135756642000475821}
   - component: {fileID: 4416926081852918493}
+  - component: {fileID: 7224509875334182401}
+  - component: {fileID: 4921155338120247132}
   m_Layer: 8
   m_Name: PlayerArmature
   m_TagString: Player
@@ -1245,6 +1247,61 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7224509875334182401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416926081852918481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0ff06e1c31c4f6da4d35f68f10d6f3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useRightMouseToAim: 1
+  upperBodyAimLayerName: UpperBodyAim
+  aimBlendSpeed: 10
+  aimCamera: {fileID: 0}
+  aimRange: 80
+  aimMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  requireAimToFire: 1
+  fireCooldown: 0.18
+  impactColor: {r: 0.45, g: 0.9, b: 1, a: 1}
+  impactVfxLifetime: 1.2
+  weaponPrefab: {fileID: 4043241439066821443, guid: 726cd21416e138640a4f2575ffe04009, type: 3}
+  weaponSocket: {fileID: 0}
+  weaponSocketName: Right_Hand
+  weaponLocalPosition: {x: 0.03, y: 0.02, z: 0.08}
+  weaponLocalEulerAngles: {x: 0, y: 90, z: 90}
+  aimVirtualCamera: {fileID: 0}
+  aimingShoulderOffset: {x: 0.9, y: 0.12, z: 0.1}
+  aimingCameraSide: 0.68
+  aimingCameraDistance: 2.6
+  aimingFieldOfView: 34
+  cameraBlendSpeed: 8
+  drawAimRay: 1
+--- !u!114 &4921155338120247132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416926081852918481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f76b80966e1243ceac6de4d6f9d54e23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iceGunController: {fileID: 7224509875334182401}
+  dotColor: {r: 1, g: 1, b: 1, a: 0.9}
+  aimColor: {r: 0.6, g: 0.95, b: 1, a: 0.95}
+  dotSize: 5
+  lineLength: 12
+  lineThickness: 2
+  lineGap: 7
 --- !u!1 &4523139366846529165
 GameObject:
   m_ObjectHideFlags: 0
