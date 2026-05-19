@@ -24,6 +24,7 @@ public class WaterFreezeTest : MonoBehaviour
 
     private Renderer waterRenderer;
     private MeshFilter waterMeshFilter;
+    private Collider[] waterColliders;
     private GameObject iceSurfaceVisual;
     private GameObject thicknessVisual;
     private GameObject levelTwoSurfaceVisual;
@@ -42,6 +43,7 @@ public class WaterFreezeTest : MonoBehaviour
     {
         waterRenderer = GetComponent<Renderer>();
         waterMeshFilter = GetComponent<MeshFilter>();
+        waterColliders = GetComponents<Collider>();
         CreateIceSurfaceVisualIfNeeded();
         CreateThicknessVisualIfNeeded();
         SetFrozen(startFrozen);
@@ -127,6 +129,7 @@ public class WaterFreezeTest : MonoBehaviour
         if (waterRenderer == null)
             waterRenderer = GetComponent<Renderer>();
 
+        bool wasLevelTwoFrozen = isLevelTwoFrozen;
         isFrozen = frozen;
         isLevelTwoFrozen = frozen;
 
@@ -162,6 +165,9 @@ public class WaterFreezeTest : MonoBehaviour
         SetLevelTwoSurfaceVisualActive(false);
         SetLevelTwoThicknessVisualActive(false);
         SetLevelTwoReflectionVisualActive(false);
+
+        if (wasLevelTwoFrozen)
+            RemoveWaterSurface();
     }
 
     private void StartFreezeSpread(Vector3 freezeCenter)
@@ -275,6 +281,24 @@ public class WaterFreezeTest : MonoBehaviour
     {
         Bounds bounds = waterRenderer != null ? waterRenderer.bounds : new Bounds(transform.position, Vector3.one);
         return bounds.center;
+    }
+
+    private void RemoveWaterSurface()
+    {
+        if (waterRenderer == null)
+            waterRenderer = GetComponent<Renderer>();
+
+        if (waterRenderer != null)
+            waterRenderer.enabled = false;
+
+        if (waterColliders == null || waterColliders.Length == 0)
+            waterColliders = GetComponents<Collider>();
+
+        for (int i = 0; i < waterColliders.Length; i++)
+        {
+            if (waterColliders[i] != null)
+                waterColliders[i].enabled = false;
+        }
     }
 
     private void CreateIceSurfaceVisualIfNeeded()

@@ -13,6 +13,10 @@ public class EnemyFreezeController : MonoBehaviour
     [SerializeField] private float slideDrag = 5f;
     [SerializeField] private float slideDuration = 1.2f;
 
+    [Header("Gravity")]
+    [SerializeField] private float gravity = -15f;
+    [SerializeField] private float groundedGravity = -2f;
+
     private CharacterController characterController;
     private Animator animator;
     private Renderer[] renderers;
@@ -21,6 +25,7 @@ public class EnemyFreezeController : MonoBehaviour
     private Vector3 slideVelocity;
     private float freezeTimer;
     private float slideTimer;
+    private float verticalVelocity;
     private float animatorSpeed = 1f;
     private bool isFrozen;
 
@@ -35,6 +40,8 @@ public class EnemyFreezeController : MonoBehaviour
 
     private void Update()
     {
+        UpdateGravity();
+
         if (!isFrozen)
             return;
 
@@ -123,6 +130,24 @@ public class EnemyFreezeController : MonoBehaviour
             transform.position += movement;
 
         slideVelocity = Vector3.Lerp(slideVelocity, Vector3.zero, slideDrag * Time.deltaTime);
+    }
+
+    private void UpdateGravity()
+    {
+        float deltaTime = Time.deltaTime;
+        if (characterController != null && characterController.enabled)
+        {
+            if (characterController.isGrounded && verticalVelocity < 0f)
+                verticalVelocity = groundedGravity;
+            else
+                verticalVelocity += gravity * deltaTime;
+
+            characterController.Move(Vector3.up * verticalVelocity * deltaTime);
+            return;
+        }
+
+        verticalVelocity += gravity * deltaTime;
+        transform.position += Vector3.up * verticalVelocity * deltaTime;
     }
 
     private void CreateIceBlockIfNeeded()
